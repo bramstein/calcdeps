@@ -23,8 +23,6 @@ program.on('--help', function () {
 
 program.parse(process.argv);
 
-console.log(program);
-
 if (program.input && program.path && program.dep) {
   calcdeps({
     input: program.input,
