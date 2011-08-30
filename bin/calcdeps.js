@@ -1,36 +1,65 @@
 #!/usr/bin/env node
 
 var calcdeps = require('../lib/calcdeps'),
-    program = require('commander');
+    optimist = require('optimist'),
+    argv = optimist
+      .usage('usage: $0 [options] arg')
+      .wrap(80)
+      .options('i', {
+        alias: 'input',
+        description: 'The inputs to calculate dependencies for. Valid values can be files or directories.'
+      })
+      .options('p', {
+        alias: 'path',
+        default: ['.'],
+        description: 'The paths that should be traversed to build the dependencies.'
+      })
+      .options('d', {
+        alias: 'dep',
+        default: [],
+        description: 'Directories or files that should be traversed to find required dependencies for the deps file. Does not generate dependency information for names provided by these files.'
+      })
+      .options('e', {
+        alias: 'exclude',
+        default: [],
+        description: 'Files or directories to exclude from the --path and --input flags.'
+      })
+      .options('o', {
+        alias: 'output_mode',
+        default: 'list',
+        description: 'The type of output to generate from this script. Options are "list" for a list of filenames, "script" for a single script containing the contents of all the files, or "deps" to generate a deps.js file for all paths'
+      })
+      .options('output_file', {
+        description: 'If specified, write output to this path instead of writing to standard output.'
+      })
+      .options('h', {
+        alias: 'help',
+        boolean: true
+      })
+      .argv;
 
-function files(value) {
-  return value.split(':');
-};
+if (argv.help) {
+  optimist.showHelp();
+} else {
+  var options = {};
 
-/*
-calcdeps.js --input src/init.js:src/modules.js:treesaver/src/core.js --path src --dep lib/closure
-*/
-program
-  .option('-i, --input <files>', 'The inputs to calculate dependencies for. Valid values can be files or directories.', files)
-  .option('-p, --path <paths>', 'The paths that should be traversed to build the dependencies.', files)
-  .option('-d, --dep <deps>', 'Directories or files that should be traversed to find required dependencies for the deps file. Does not generate dependency information for names provided by these files.', files)
-  .option('-e, --exclude [excludes]', 'Files or directories to exclude from the --path and --input flags.', files)
-  .option('-o, --output_file [file]', 'If specified, write output to this path instead of writing to standard output.');
+  if (!['list', 'script', 'deps'].some(function (v) { return v === argv.output_mode; })) {
+    options.output_mode = 'list';
+  } else {
+    options.output_mode = argv.output_mode;
+  }
 
-program.on('--help', function () {
-  console.log('Multiple <files>, <paths>, <deps>, or <excludes> entries should be ":" separated.');
-});
-
-program.parse(process.argv);
-
-if (program.input && program.path && program.dep) {
-  calcdeps({
-    input: program.input,
-    paths: program.path,
-    deps: program.dep,
-    excludes: program.exclude,
-    outputFile: program.output_file
+  ['input', 'path', 'dep', 'exclude'].forEach(function (name) {
+    if (argv[name] && typeof argv[name] === 'string') {
+      options[name] = [argv[name]];
+    } else if (argv[name] && Array.isArray(argv[name])) {
+      options[name] = argv[name];
+    } else {
+      options[name] = [];
+    }
   });
+
+  options.output_file = argv.output_file;
+
+  calcdeps(options);
 }
-
-

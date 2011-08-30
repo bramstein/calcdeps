@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "async": ">=0.1.9",
-    "commander": ">=0.1.0"
+    "optimist": ">=0.2.6"
   },
   "devDependencies": {}
 }
