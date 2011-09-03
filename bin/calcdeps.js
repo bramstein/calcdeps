@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 var calcdeps = require('../lib/calcdeps'),
+    async = require('async'),
+    fs = require('fs'),
     optimist = require('optimist'),
     argv = optimist
       .usage('usage: $0 [options] arg')
@@ -82,6 +84,21 @@ if (argv.help) {
           outputStream.write(result + '\n');
         });
         outputStream.end();
+      } else if (options.output_mode === 'script') {
+        var i = 0;
+        async.forEachSeries(results, function (result, callback) {
+          var readStream = fs.createReadStream(result, { flags: 'r' });
+          outputStream.write('// Input ' + i + '\n');
+          i += 1;
+          readStream.pipe(outputStream, { end: false });
+          readStream.on('end', callback);
+        }, function (err) {
+          if (err) {
+            console.error(err);
+          } else {
+            outputStream.end();
+          }
+        });
       }
     }
   });
