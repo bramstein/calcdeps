@@ -17,5 +17,7 @@
     "async": ">=0.1.9",
     "optimist": ">=0.2.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vows": ">=0.5.11"
+  }
 }
