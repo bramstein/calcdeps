@@ -35,7 +35,7 @@ vows.describe('calcdeps.js').addBatch({
             assert.isNull(err);
         },
         'returned four results': function (err, result) {
-            assert.length(result, 4);
+            assert.lengthOf(result, 4);
         },
         'verify results': {
             topic: function (result) {

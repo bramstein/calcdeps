@@ -6,7 +6,7 @@ vows.describe('utils').addBatch({
   'toObject': {
     topic: utils.toObject(['hello world', 'something', 'hello world']),
     'has two keys': function (topic) {
-      assert.length(Object.keys(topic), 2);
+      assert.lengthOf(Object.keys(topic), 2);
     },
     'has the right properties': function (topic) {
       assert.include(topic, 'hello world');
@@ -16,7 +16,7 @@ vows.describe('utils').addBatch({
   'merge': {
     topic: utils.merge(['1', '2'], ['2', '3'], ['3', '4']),
     'has four elements': function (topic) {
-      assert.length(topic, 4);
+      assert.lengthOf(topic, 4);
     },
     'has the right values': function (topic) {
       assert.include(topic, '1');
@@ -35,7 +35,7 @@ vows.describe('utils').addBatch({
       assert.isNull(err);
     },
     'found five files': function (err, result) {
-      assert.length(result, 5);
+      assert.lengthOf(result, 5);
     }
   },
   'walkdir - *.js filter': {
@@ -48,7 +48,7 @@ vows.describe('utils').addBatch({
       assert.isNull(err);
     },
     'found four *.js files': function (err, result) {
-      assert.length(result, 4);
+	assert.lengthOf(result, 4);
     }
   },
   'walkdir - nonexistent dir': {
@@ -71,7 +71,7 @@ vows.describe('utils').addBatch({
       assert.isNull(err);
     },
     'found one file': function (err, result) {
-      assert.length(result, 1);
+      assert.lengthOf(result, 1);
     }
   },
   'walkdir - not a dir and excluded': {

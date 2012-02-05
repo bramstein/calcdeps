@@ -85,7 +85,7 @@ vows.describe('TokenStream').addBatch({
             generator.pipe(stream);
         },
         'received three events': function (err, results) {
-            assert.length(results, 3);
+            assert.lengthOf(results, 3);
         },
         'events have the correct name and captured the right data': function (err, results) {
             assert.equal(results[0].token, 'a');
@@ -120,7 +120,7 @@ vows.describe('TokenStream').addBatch({
             generator.pipe(stream);
         },
         'received four events': function (err, results) {
-            assert.length(results, 4);
+            assert.lengthOf(results, 4);
         },
         'events have the correct name captured the right data': function (err, results) {
             assert.equal(results[0].token, 'aa');
