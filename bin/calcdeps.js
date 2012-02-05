@@ -62,7 +62,7 @@ if (argv.help) {
     }
   });
 
-  calcdeps(options, function (err, results) {
+  calcdeps.calcdeps(options, function (err, results) {
     var outputStream = null;
     if (err) {
       console.error(err);
