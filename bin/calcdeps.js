@@ -78,12 +78,10 @@ if (argv.help) {
         results.forEach(function (result) {
             outputStream.write('goog.addDependency("' + result.relativePath + '", ' + JSON.stringify(result.provide) + ', ' + JSON.stringify(result.require) + ');\n');
         });
-        outputStream.end();
       } else if (options.output_mode === 'list') {
         results.forEach(function (result) {
           outputStream.write(result + '\n');
         });
-        outputStream.end();
       } else if (options.output_mode === 'script') {
         var i = 0;
         async.forEachSeries(results, function (result, callback) {
@@ -95,8 +93,6 @@ if (argv.help) {
         }, function (err) {
           if (err) {
             console.error(err);
-          } else {
-            outputStream.end();
           }
         });
       }
