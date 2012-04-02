@@ -66,6 +66,7 @@ if (argv.help) {
     var outputStream = null;
     if (err) {
       console.error(err);
+      process.exit(1);
     } else {
       if (outputFile) {
         outputStream = fs.createWriteStream(outputFile);
@@ -93,6 +94,7 @@ if (argv.help) {
         }, function (err) {
           if (err) {
             console.error(err);
+            process.exit(1);
           }
         });
       }
