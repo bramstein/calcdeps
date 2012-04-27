@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git://github.com/bramstein/calcdeps.js.git"
   },
+  "main": "./lib/calcdeps",
   "bin": {
     "calcdeps": "./bin/calcdeps.js"
   },
