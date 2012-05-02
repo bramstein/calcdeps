@@ -1,16 +1,14 @@
-A Node.js port of Google Closure library calcdeps.py.
+## A Node.js port of Google Closure library calcdeps.py.
 
-Installation
-============
+## Installation
 
-    npm install calcdeps -g
+    > npm install calcdeps -g
 
-Usage
-=====
+## Usage
+
      calcdeps [options]
 
-Options
-=======
+## Options
 
 <dl>
   <dt>-i, --input</dt>
