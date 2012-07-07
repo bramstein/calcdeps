@@ -2,15 +2,16 @@
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com/)",
   "name": "calcdeps",
   "description": "A Node.js port of Google Closure library calcdeps.py",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": ["calcdeps.py", "closure", "closure compiler", "calcdeps"],
   "repository": {
     "type": "git",
     "url": "git://github.com/bramstein/calcdeps.js.git"
   },
   "main": "./lib/calcdeps",
-  "bin": {
-    "calcdeps": "./bin/calcdeps.js"
+  "directories": {
+    "lib": "./lib",
+    "bin": "./bin"
   },
   "engines": {
     "node": ">=0.4.8"
