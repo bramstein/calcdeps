@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/bramstein/calcdeps.js.png)](http://travis-ci.org/bramstein/calcdeps.js)
 ## A Node.js port of Google Closure library calcdeps.py.
 
 ### Installation
