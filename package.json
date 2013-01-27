@@ -6,7 +6,7 @@
   "keywords": ["calcdeps.py", "closure", "closure compiler", "calcdeps"],
   "repository": {
     "type": "git",
-    "url": "git://github.com/bramstein/calcdeps.js.git"
+    "url": "git://github.com/bramstein/calcdeps.git"
   },
   "main": "./lib/calcdeps",
   "directories": {
