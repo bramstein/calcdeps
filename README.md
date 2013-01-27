@@ -6,7 +6,7 @@
 
 ### Usage
 
-     calcdeps.js [options]
+     calcdeps [options]
 
 ### Options
 
